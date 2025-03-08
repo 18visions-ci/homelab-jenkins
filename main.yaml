@@ -7,5 +7,5 @@
   roles:
     - common
     - jenkins
-    - firewall
+    #- firewall
     - postinstall
