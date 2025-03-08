@@ -1,0 +1,13 @@
+---
+- name: Open Firewall for Jenkins (port 8080)
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 8080
+    jump: ACCEPT
+
+- name: Persist Firewall Rule
+  ansible.builtin.shell: |
+    iptables-save > /etc/iptables/rules.v4
+  args:
+    executable: /bin/bash

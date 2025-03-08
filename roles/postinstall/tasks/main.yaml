@@ -1,0 +1,9 @@
+---
+- name: Fetch Initial Admin Password
+  command: cat /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_admin_password
+  changed_when: false
+
+- name: Display Jenkins Initial Admin Password
+  debug:
+    msg: "Initial Admin Password: {{ jenkins_admin_password.stdout }}"

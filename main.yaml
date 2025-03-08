@@ -1,0 +1,9 @@
+---
+- name: Deploy Jenkins Controller on Proxmox VM
+  hosts: jenkins_controller
+  become: true
+  roles:
+    - common
+    - jenkins
+    - firewall
+    - postinstall

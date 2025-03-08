@@ -1,0 +1,27 @@
+---
+- name: Add Jenkins GPG key
+  ansible.builtin.shell: |
+    curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  args:
+    executable: /bin/bash
+
+- name: Add Jenkins APT repository
+  template:
+    src: jenkins.list.j2
+    dest: /etc/apt/sources.list.d/jenkins.list
+
+- name: Update APT cache after adding Jenkins repository
+  apt:
+    update_cache: yes
+
+- name: Install Jenkins
+  apt:
+    name: jenkins
+    state: present
+
+- name: Ensure Jenkins service is enabled and started
+  systemd:
+    name: jenkins
+    enabled: yes
+    state: started
+  notify: Restart Jenkins
