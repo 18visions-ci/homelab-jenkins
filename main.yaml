@@ -1,8 +1,9 @@
 ---
 - name: Deploy Jenkins Controller on Proxmox VM
   hosts: jenkins_controller
-  become: true
-  become_user: sudo
+  become: yes
+  become_method: sudo  # Explicitly set sudo
+  become_user: root  # Run as root
   roles:
     - common
     - jenkins
