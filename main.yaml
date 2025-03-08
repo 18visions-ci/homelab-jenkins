@@ -2,6 +2,7 @@
 - name: Deploy Jenkins Controller on Proxmox VM
   hosts: jenkins_controller
   become: true
+  become_user: sudo
   roles:
     - common
     - jenkins
