@@ -7,3 +7,4 @@
 - name: Display Jenkins Initial Admin Password
   debug:
     msg: "Initial Admin Password: {{ jenkins_admin_password.stdout }}"
+    verbosity: 1
